@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Real Count</title>
+
+    <link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/img_chartbar1_32px.png">
+
+    <!-- Bootstrap -->
+    <link href="<?php echo base_url() ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<?php echo base_url() ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
+
+    <style>
+        .chip {
+            display: inline-block;
+            padding: 0 25px;
+            height: 50px;
+            font-size: 16px;
+            line-height: 50px;
+            border-radius: 25px;
+            background-color: #f1f1f1;
+        }
+
+        .chip2 {
+            display: inline-block;
+            padding: 0 25px;
+            height: 50px;
+            font-size: 16px;
+            line-height: 50px;
+            border-radius: 25px;
+            background-color: #B71C1C;
+        }
+
+        .chip img {
+            float: left;
+            margin: 0 10px 0 -25px;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+
+        .closebtn {
+            padding-left: 10px;
+            color: #888;
+            font-weight: bold;
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .closebtn:hover {
+            color: #000;
+        }
+
+        .flexp {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        .flexc {
+            width: 50%;
+        }
+    </style>
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+
+        <?php
+          $this->load->view('v_panelLeft');
+          $this->load->view('v_panelTopRight');
+        ?>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="x_panel">
+
+              <div class="x_content">
+
+                <!-- start form for validation -->
+                <form id="demo-form" data-parsley-validate style="font-family: 'Monaco';" method="POST" action="<?php echo base_url() . "Dashboard/UpdateDapil"; ?>">
+
+                  <?php
+                      $this->load->view('v_dapilEditGet');
+                  ?>
+
+                </form>
+                <!-- end form for validations -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Real Count - <a href="https://www.partaiperindo.com">Partai Perindo</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="<?php echo base_url() ?>assets/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="<?php echo base_url() ?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="<?php echo base_url() ?>assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- Flot -->
+    <script src="<?php echo base_url() ?>assets/vendors/Flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="<?php echo base_url() ?>assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="<?php echo base_url() ?>assets/vendors/moment/min/moment.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . "assets/snackbar/dist/snackbar.css"; ?>" />
+    <script src="<?php echo base_url() . "assets/snackbar/dist/snackbar.min.js"; ?>"></script>
+
+    <!-- Ajax Data Wilayah -->
+    <script type="text/javascript">
+        function AddIdKota(id)
+        {
+            var x = document.getElementById("tchipkota").value;
+
+            if ($("#icItemKota").prop('checked'))
+            {
+                if (x === "")
+                {
+                    //var idx = (x === "" ? id : x+","+id);
+                    document.getElementById("tchipkota").value = id;
+                }
+                else
+                {
+                    var idx = x+","+id;
+                    document.getElementById("tchipkota").value = idx;
+
+                    //var arr = [idx]; //[5, 15, 110, 210, 550];
+                    //var index = arr.indexOf(id);
+
+                    //if (index > -1)
+                    //{
+                        //arr.splice(index, 1);
+                    //}
+                    //var idx = (x === "" ? id : x+","+id);
+                    //document.getElementById("tchipkota").value = arr;
+                }
+            }
+        }
+
+        function LoadProvinsiOnSelected ()
+        {
+            $("#tchipkota").val('');
+            $("#tchipkota").hide();
+            $("#dchipkota").hide();
+
+            var idprovinsi = $(this).find(":selected").val();
+
+            if (idprovinsi === "0")
+            {
+                console.log("Oops!");
+            }
+            else
+            {
+                $.ajax({
+                    url: '<?php echo base_url()."Dashboard/SpinnerKotaOnAjax_v2/" ?>' + idprovinsi,
+                    cache: false,
+                    success: function(r)
+                    {
+                        //console.log(r);
+
+                        if (r === "")
+                        {
+                            $("#dchipkota").hide();
+                        }
+                        else
+                        {
+                            $("#dchipkota").show();
+                            $("#chipkota").html(r);
+                            $("#chipreset").show();
+                        }
+                    }
+                });
+            }
+        }
+
+        function ResetChipsKota ()
+        {
+            $("#tchipkota").val('');
+            $("#tchipkota").val('0,');
+            $('input:checkbox').removeAttr('checked');
+        }
+
+        function ShowMessage (message)
+        {
+            Snackbar.show({
+                actionText: "Ok",
+                actionTextColor: "#ffffff",
+                pos: "bottom-right",
+                showAction: false,
+                text: "<small>" + message + "</small>"
+            });
+        }
+
+        $(document).ready(function ()
+        {
+            //$("#tchipkota").val('');
+            $("#tchipkota").hide();
+            $("#dchipkota").show();
+
+            // Load Kota
+            /*var idprovinsix = $(this).find(":selected").val();
+
+            $.ajax({
+                url: '<?php echo base_url()."Dashboard/SpinnerKotaOnAjax_v3/" ?>' + idprovinsix,
+                // data: "IdProvinsi="+idprovinsi,
+                cache: false,
+                // type : "GET",
+                success: function(r)
+                {
+                    //console.log(r);
+
+                    if (r === "")
+                    {
+                        $("#dchipkota").hide();
+                    }
+                    else
+                    {
+                        $("#dchipkota").show();
+                        $("#chipkota").html(r);
+                        $("#chipreset").show();
+                    }
+                }
+            });*/
+            // End of Load Kota
+
+            var message = '<?php echo @$_SESSION["Response_Message"]; ?>';
+            if (message != "")
+            {
+                ShowMessage(message);
+
+                $.ajax({
+                    url: '<?php echo base_url()."Dashboard/RemoveMessage"; ?>',
+                    success: function(r)
+                    {}
+                });
+            }
+
+            // provinsi
+            $("#spinnerprovinsi").change(function()
+            {
+                var idprovinsi = $(this).find(":selected").val();
+
+                $.ajax({
+                    url: '<?php echo base_url()."Dashboard/SpinnerKotaOnAjax_v2/" ?>' + idprovinsi,
+                    // data: "IdProvinsi="+idprovinsi,
+                    cache: false,
+                    // type : "GET",
+                    success: function(r)
+                    {
+                        //console.log(r);
+
+                        if (r === "")
+                        {
+                            $("#dchipkota").hide();
+                        }
+                        else
+                        {
+                            $("#dchipkota").show();
+                            $("#chipkota").html(r);
+                            $("#chipreset").show();
+                        }
+                    }
+                });
+            });
+            // end of provinsi
+        });
+    </script>
+
+  </body>
+</html>
